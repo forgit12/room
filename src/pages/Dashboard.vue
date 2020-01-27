@@ -366,7 +366,7 @@
       },
 
       initConnection() {
-        this.wsconnection = jsxapi.connect('wss://10.10.20.159', {username: 'admin', password: 'ciscopsdt'})
+        this.wsconnection = jsxapi.connect('wss://172.17.250.91', {username: 'localadmin', password: 'ciscopsdt'})
         this.wsconnection.on('ready', () => { this.getCallHistory() });
       },
 
