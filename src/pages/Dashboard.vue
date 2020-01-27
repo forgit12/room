@@ -317,9 +317,9 @@
       // this.dial();
       this.initConnection();
 
-      setInterval(() => {
-        this.getCallHistory()
-      }, 5000)
+      // setInterval(() => {
+      //   this.getCallHistory()
+      // }, 5000)
 
     },
     methods: {
@@ -367,7 +367,14 @@
 
       initConnection() {
         this.wsconnection = jsxapi.connect('wss://10.10.20.159', {username: 'admin', password: 'ciscopsdt'})
-        this.wsconnection.on('ready', () => { this.getCallHistory() });
+        this.wsconnection.on('ready', () => {
+          this.getCallHistory()
+        });
+
+        this.wsconnection.event.on('CallDisconnect', (event) => {
+          console.log('Call disconnected', event);
+          this.historyEntries.push(event);
+        });
       },
 
       getCallHistory() {
